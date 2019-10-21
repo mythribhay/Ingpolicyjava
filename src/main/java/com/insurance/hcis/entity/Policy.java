@@ -32,5 +32,5 @@ public class Policy {
 	private String userName;
 	private LocalDate dob;
 	private String diagnosis;
-	private String ailments;
+	private String ailment;
 }
