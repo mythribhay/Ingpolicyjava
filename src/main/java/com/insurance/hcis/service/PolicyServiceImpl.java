@@ -3,7 +3,9 @@ package com.insurance.hcis.service;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.insurance.hcis.dto.PolicyResponse;
 import com.insurance.hcis.entity.Policy;
@@ -11,10 +13,11 @@ import com.insurance.hcis.exception.InvalidPolicyException;
 import com.insurance.hcis.repository.PolicyRepository;
 import com.insurance.hcis.util.ApplicationConstants;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PolicyServiceImpl.
+ * @author sharath vemperala
  */
+@Service
 public class PolicyServiceImpl implements PolicyService {
 
 	/** The policy repository. */
@@ -22,7 +25,7 @@ public class PolicyServiceImpl implements PolicyService {
 	PolicyRepository policyRepository;
 	
 	/**
-	 * Verify andget policy.
+	 * Verify and get policy.
 	 *
 	 * @param policyId the policy id
 	 * @return the policy response
@@ -40,8 +43,10 @@ public class PolicyServiceImpl implements PolicyService {
 		if(endDate.compareTo(currentDate) < 0) {
 			throw new InvalidPolicyException(ApplicationConstants.VERIFICATION_FAILED);
 		}
+		PolicyResponse policyResponse = new PolicyResponse();
+		BeanUtils.copyProperties(policy, policyResponse);
 		
-		return null;
+		return policyResponse;
 	}
 
 }
