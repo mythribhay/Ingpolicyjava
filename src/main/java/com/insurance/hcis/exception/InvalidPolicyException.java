@@ -3,7 +3,7 @@ package com.insurance.hcis.exception;
 /**
  * Description- This class is used to throw invalidPolicyException in case policyId is not found in our DB.
  */
-public class InvalidPolicyException extends RuntimeException {
+public class InvalidPolicyException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
