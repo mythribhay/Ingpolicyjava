@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Description- This is an entity class for approver.
+ * Description- This is an entity class for Policy.
  * 
  */
 
@@ -22,13 +22,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Approver {
+public class Policy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer appoverId;
+	private Integer policyId;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private Double claimAmount;
 	private String userName;
-	private String email;
-	private String password;
-	private String role;
+	private LocalDate dob;
+	private String diagnosis;
+	private String ailment;
 }
