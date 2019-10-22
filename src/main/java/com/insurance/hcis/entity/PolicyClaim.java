@@ -23,19 +23,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PolicyClaim {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer claimId;
 	private Integer policyId;
 	private String diagnosis;
+	private String ailment;
 	private LocalDate admissionDate;
 	private LocalDate dischargeDate;
 	private LocalDate claimDate;
 	private String status;
+	private String hospitalName;
 	private String approver1Comment;
 	private String approver2Comment;
 	private Double requestedClaimAmount;
-	private Integer approver;
+	private Integer approverId;
 
 }
