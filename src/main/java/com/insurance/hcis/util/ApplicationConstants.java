@@ -34,4 +34,5 @@ public class ApplicationConstants {
 	public static final String INVALID_LEVEL_TWO_STATUS = "Invalid level two status";
 	public static final String CLAIM_APPROVED_FAILED = "Claim approve was failed";
 	public static final String INVALID_STATUS_FOR_L2_APPROVAL = "Invalid status for approve";
+
 }
