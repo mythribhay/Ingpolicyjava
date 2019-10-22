@@ -10,14 +10,14 @@ import com.insurance.hcis.dto.ResponseApproverDto;
 import com.insurance.hcis.exception.CommonException;
 
 /**
- * @author User1
+ * @author SubhaMaheswaran
  *
  */
 public interface LoginService {
 
 	/**
 	 * @param requestApproverDto
-	 * @return
+	 * @return Optional<ResponseApproverDto>
 	 */
 	Optional<ResponseApproverDto> login(RequestApproverDto requestApproverDto) throws CommonException;
 

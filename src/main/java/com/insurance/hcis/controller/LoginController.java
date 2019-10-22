@@ -2,6 +2,8 @@ package com.insurance.hcis.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,14 +31,14 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
-	/** 
+	/**
 	 * @Description This method is used for approver login
 	 * @param RequestApproverDto
 	 * @return ResponseApproverDto
 	 * @exception INVALID_CREDENTIALS
 	 */
 	@PostMapping("/login")
-	public Optional<ResponseApproverDto> login(@RequestBody RequestApproverDto requestApproverDto)
+	public ResponseEntity<Optional<ResponseApproverDto>> login(@RequestBody RequestApproverDto requestApproverDto)
 			throws CommonException {
 		log.info(":: Enter into LoginController--------::login()");
 		Optional<ResponseApproverDto> responseApproverDto = loginService.login(requestApproverDto);
@@ -45,6 +47,6 @@ public class LoginController {
 		}
 		responseApproverDto.get().setMessage("login successfull");
 		responseApproverDto.get().setStatusCode(200);
-		return responseApproverDto;
+		return new ResponseEntity<>(responseApproverDto, HttpStatus.OK);
 	}
 }
