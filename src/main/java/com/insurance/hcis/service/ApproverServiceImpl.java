@@ -103,9 +103,8 @@ public class ApproverServiceImpl implements ApproverService {
 
 		if (requestClaimApproveDto.getApproverId() == 1001
 				&& requestClaimApproveDto.getLevelOneStatus().equalsIgnoreCase(ApprovalStatus.APPROVED)
-				|| requestClaimApproveDto.getLevelOneStatus().equalsIgnoreCase(ApprovalStatus.REJECTED)
-						&& requestClaimApproveDto.getLevelTwoStatus()
-								.equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_COMPLETE)) {
+
+				&& requestClaimApproveDto.getLevelTwoStatus().equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_COMPLETE)) {
 			responsePolicy.setStatus(ApprovalStatus.LEVEL_ONE_APPROVED);
 			responseClaimApproveDto.setApprovedLevelStatus(ApprovalStatus.APPROVED);
 			policyClaimRepository.save(responsePolicy);
@@ -120,9 +119,8 @@ public class ApproverServiceImpl implements ApproverService {
 		}
 		if (requestClaimApproveDto.getApproverId() == 2001
 				&& requestClaimApproveDto.getLevelOneStatus().equalsIgnoreCase(ApprovalStatus.APPROVED)
-				|| requestClaimApproveDto.getLevelOneStatus().equalsIgnoreCase(ApprovalStatus.REJECTED)
-						&& requestClaimApproveDto.getLevelTwoStatus()
-								.equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_COMPLETE)) {
+
+				&& requestClaimApproveDto.getLevelTwoStatus().equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_COMPLETE)) {
 			responsePolicy.setStatus(ApprovalStatus.LEVEL_TWO_APPROVED);
 			responseClaimApproveDto.setApprovedLevelStatus(ApprovalStatus.APPROVED);
 			policyClaimRepository.save(responsePolicy);
