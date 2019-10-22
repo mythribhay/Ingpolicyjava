@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Repository;
 import com.insurance.hcis.entity.PolicyClaim;
 
 /**
- * @author SubhaMaheswaran
+ * 
+ * 
+ * @author Manisha
+ * @apiNote This repository is to interact with policy claim entity. >>>>>>>
+ *          ef728349758d420571cbaaa9c26d6d380adc21b3
  *
  */
 @Repository
@@ -21,7 +26,7 @@ public interface PolicyClaimRepository extends JpaRepository<PolicyClaim, Intege
 	/**
 	 * @param approverId
 	 * @param status
-	 * @return
+	 * @return List<PolicyClaim>
 	 */
 	Optional<List<PolicyClaim>> findByApproverIdAndStatus(Integer approverId, String status);
 
