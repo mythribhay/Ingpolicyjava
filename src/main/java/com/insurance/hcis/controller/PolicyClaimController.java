@@ -25,18 +25,22 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @Slf4j
 public class PolicyClaimController {
-	
+
 	@Autowired
 	PolicyClaimService policyClaimService;
+
 	/*
 	 * @Param- claimRequestDto
+	 * 
 	 * @Response -ResponseEntity of ClaimResponseDto
-	 * @Description -This method is used to save the book details which is donated by the specific user.
-	 * */
+	 * 
+	 * @Description -This method is used to save the book details which is donated
+	 * by the specific user.
+	 */
 	@PostMapping("/claim")
-	public ResponseEntity<ClaimResponseDto> policyClaim(@RequestBody ClaimRequestDto claimRequestDto){
+	public ResponseEntity<ClaimResponseDto> policyClaim(@RequestBody ClaimRequestDto claimRequestDto) {
 		log.info(":: Enter into PolicyClaimController--------::policyClaim()");
-		ClaimResponseDto response= policyClaimService.claimPolicy(claimRequestDto);
-		return new ResponseEntity<>(response,HttpStatus.OK);
+		ClaimResponseDto response = policyClaimService.claimPolicy(claimRequestDto);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }
