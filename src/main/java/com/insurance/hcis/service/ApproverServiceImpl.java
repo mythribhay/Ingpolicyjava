@@ -71,9 +71,14 @@ public class ApproverServiceImpl implements ApproverService {
 		return listResponsePolicyClaimDto;
 	}
 
-	@Override
+	/**
+	 * @Description This method is used for get claims
+	 * @param requestClaimApproveDto
+	 * @return ResponseClaimApproveDto
+	 * @exception NO_CLAIMS_FOUND,INVALID_APPROVAL_DETAILS,INVALID_APPROVER_ID
+	 */
 	public ResponseClaimApproveDto approveClaim(RequestClaimApproveDto requestClaimApproveDto) throws CommonException {
-
+		log.info(":: Enter into ApproverServiceImpl--------::approveClaim()");
 		if (requestClaimApproveDto == null) {
 			throw new CommonException(ApplicationConstants.INVALID_APPROVAL_DETAILS);
 		}
