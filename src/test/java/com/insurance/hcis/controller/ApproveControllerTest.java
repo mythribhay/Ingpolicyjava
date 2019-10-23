@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insurance.hics.controller;
+package com.insurance.hcis.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +19,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.insurance.hcis.controller.ApproveController;
 import com.insurance.hcis.dto.RequestClaimApproveDto;
 import com.insurance.hcis.dto.ResponseClaimApproveDto;
 import com.insurance.hcis.dto.ResponsePolicyClaim;
 import com.insurance.hcis.dto.ResponsePolicyClaimDto;
+import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.service.ApproverServiceImpl;
 
 /**
  * @author SubhaMaheswaran
- *
+ * @Description This class is used for to do get claim and approve claim test
+ *              operations	
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ApproveControllerTest {
@@ -42,10 +43,12 @@ public class ApproveControllerTest {
 	MockMvc mockMvc;
 
 	RequestClaimApproveDto requestClaimApproveDto;
+	RequestClaimApproveDto requestClaimApproveDto1;
 
 	List<ResponsePolicyClaim> list;
 	ResponsePolicyClaim responsePolicyClaim;
 	ResponseClaimApproveDto responseClaimApproveDto;
+	ResponseClaimApproveDto responseClaimApproveDto1;
 
 	@Before
 	public void setUp() {
@@ -65,8 +68,13 @@ public class ApproveControllerTest {
 		list.add(responsePolicyClaim);
 
 		responseClaimApproveDto = new ResponseClaimApproveDto();
+		responseClaimApproveDto.setApprovedLevelStatus("Approved");
 		responseClaimApproveDto.setMessage("success");
 		responseClaimApproveDto.setStatusCode(200);
+
+		responseClaimApproveDto1 = new ResponseClaimApproveDto();
+		requestClaimApproveDto1 = new RequestClaimApproveDto();
+
 	}
 
 	@Test
@@ -76,5 +84,25 @@ public class ApproveControllerTest {
 		Assert.assertNotNull(responseClaimApproveDto);
 	}
 
-	
+	@Test(expected = CommonException.class)
+	public void testGetClaimsNegative() throws Exception {
+		Mockito.when(approverServiceImpl.getClaims(1, "pending L1")).thenReturn(Optional.ofNullable(null));
+		ResponseEntity<ResponsePolicyClaimDto> responseClaimApproveDto = approveController.getClaims(1, "pending L1");
+		Assert.assertNotNull(responseClaimApproveDto);
+	}
+
+	@Test
+	public void testApproveClaim() throws CommonException {
+		Mockito.when(approverServiceImpl.approveClaim(Mockito.any())).thenReturn(responseClaimApproveDto);
+		ResponseEntity<ResponseClaimApproveDto> response = approveController.approveClaim(requestClaimApproveDto);
+		Assert.assertNotNull(response);
+	}
+
+//	@Test(expected = CommonException.class)
+//	public void testApproveClaimNegative() throws CommonException {
+//		Mockito.when(approverServiceImpl.approveClaim(Mockito.any())).thenReturn(null);
+//		ResponseEntity<ResponseClaimApproveDto> response = approveController.approveClaim(requestClaimApproveDto1);
+//		Assert.assertNotNull(response);
+//	}
+
 }

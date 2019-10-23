@@ -17,8 +17,8 @@ public class ApplicationConstants {
 
 	}
 
-	public static final Integer FIRST_APPROVER_ID = 1;
-	public static final Integer SECOND_APPROVER_ID = 1;
+	public static final Integer FIRST_APPROVER_ID = 1001;
+	public static final Integer SECOND_APPROVER_ID = 2001;
 	public static final Integer SUCESS_STATUS_CODE = HttpStatus.CREATED.value();
 	public static final String CLAIM_POLICY_SUCESS_MESSAGE = "Claim Submitted";
 	public static final String SUCCESS = "sucess";
@@ -34,4 +34,5 @@ public class ApplicationConstants {
 	public static final String INVALID_LEVEL_TWO_STATUS = "Invalid level two status";
 	public static final String CLAIM_APPROVED_FAILED = "Claim approve was failed";
 	public static final String INVALID_STATUS_FOR_L2_APPROVAL = "Invalid status for approve";
+
 }

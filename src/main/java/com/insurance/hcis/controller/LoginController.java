@@ -1,6 +1,7 @@
 package com.insurance.hcis.controller;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author SubhaMaheswaran
- * @Description This class is used to do the login operation
+ * @Description This class is used for to do the login operation
  */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -42,6 +43,10 @@ public class LoginController {
 			throws CommonException {
 		log.info(":: Enter into LoginController--------::login()");
 		Optional<ResponseApproverDto> responseApproverDto = loginService.login(requestApproverDto);
+		/**
+		 * @Description Checking the response data is present or not
+		 * @exception INVALID_CREDENTIALS
+		 */
 		if (!(responseApproverDto.isPresent())) {
 			throw new CommonException(ApplicationConstants.INVALID_CREDENTIALS);
 		}
