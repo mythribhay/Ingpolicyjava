@@ -1,5 +1,7 @@
 package com.insurance.hcis.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.insurance.hcis.dto.ClaimRequestDto;
 import com.insurance.hcis.dto.ClaimResponseDto;
+import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.service.PolicyClaimService;
+import com.insurance.hcis.util.ApplicationConstants;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,17 +34,21 @@ public class PolicyClaimController {
 	PolicyClaimService policyClaimService;
 
 	/*
+	 * @Description -This method is used to save the claim of policy taken by user while health insurance.
 	 * @Param- claimRequestDto
-	 * 
-	 * @Response -ResponseEntity of ClaimResponseDto
-	 * 
-	 * @Description -This method is used to save the book details which is donated
-	 * by the specific user.
+	 * @Response- ResponseEntity of Optional<ClaimResponseDto>
+	 * @Exception- CommonException
 	 */
 	@PostMapping("/claim")
-	public ResponseEntity<ClaimResponseDto> policyClaim(@RequestBody ClaimRequestDto claimRequestDto) {
+	public ResponseEntity<Optional<ClaimResponseDto>> policyClaim(@RequestBody ClaimRequestDto claimRequestDto)
+			throws CommonException {
 		log.info(":: Enter into PolicyClaimController--------::policyClaim()");
-		ClaimResponseDto response = policyClaimService.claimPolicy(claimRequestDto);
+		Optional<ClaimResponseDto> response = policyClaimService.claimPolicy(claimRequestDto);
+		if (!(response.isPresent())) {
+			throw new CommonException(ApplicationConstants.CLAIM_SUMBITTED_FAILED);
+		}
+		response.get().setMessage("Claim submitted");
+		response.get().setStatusCode(200);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

@@ -3,6 +3,7 @@ package com.insurance.hcis.service;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,18 +32,18 @@ public class PolicyClaimServiceImplTest {
 		
 		ClaimRequestDto claimRequestDto = new ClaimRequestDto();
 		claimRequestDto.setAdmissionDate(LocalDate.now());
-		claimRequestDto.setAilment("hnhs");
-		claimRequestDto.setApprover1Comment("Adada");
-		claimRequestDto.setApprover2Comment("ibiut");
+		claimRequestDto.setAilment("cavities");
+		claimRequestDto.setApprover1Comment("Approve1");
+		claimRequestDto.setApprover2Comment("Approve2");
 		claimRequestDto.setClaimDate(LocalDate.now());
-		claimRequestDto.setDiagnosis("kjgg");
+		claimRequestDto.setDiagnosis("dental");
 		claimRequestDto.setHospitalName("apolo");
 		claimRequestDto.setPolicyId(1);
 		claimRequestDto.setRequestedClaimAmount(8756.0);
-		claimRequestDto.setStatus("ygduyf");
+		claimRequestDto.setStatus("pending");
 		claimRequestDto.setDischargeDate(LocalDate.now());
 		
-		ClaimResponseDto actual = policyClaimServiceImpl.claimPolicy(claimRequestDto);
+		Optional<ClaimResponseDto> actual = policyClaimServiceImpl.claimPolicy(claimRequestDto);
 		assertNotNull(actual);
 	}
 
