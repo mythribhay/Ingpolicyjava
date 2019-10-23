@@ -1,5 +1,7 @@
 package com.insurance.hcis.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,27 +12,29 @@ import com.insurance.hcis.repository.PolicyClaimRepository;
 import com.insurance.hcis.util.ApplicationConstants;
 
 import lombok.extern.slf4j.Slf4j;
+
 /**
- * @author Manisha Yadav
- * Description- this class is used to submit the claim details to health insurance claim system.
+ * @author Manisha Yadav Description- this class is used to submit the claim
+ *         details to health insurance claim system.
  *
  */
 @Service
 @Slf4j
-public class PolicyClaimServiceImpl implements PolicyClaimService{
+public class PolicyClaimServiceImpl implements PolicyClaimService {
 
 	@Autowired
 	PolicyClaimRepository policyClaimRepository;
 	@Autowired
 	ApplicationConstants applicationConstants;
-	
+
 	/**
-	 * @param- claimRequestDto
-	 * @return- ClaimResponseDto
-	 * This method is used to submit the claim details by the user.
+	 * Description- This method is used to save the claim of policy taken by user while health insurance. 
+	 * @param- Optional<ClaimResponseDto>
+	 * @response- ClaimResponseDto This method is used to submit the claim details by
+	 *          the user.
 	 */
 	@Override
-	public ClaimResponseDto claimPolicy(ClaimRequestDto claimRequestDto) {
+	public Optional<ClaimResponseDto> claimPolicy(ClaimRequestDto claimRequestDto) {
 
 		log.info(":: Enter into PolicyClaimServiceImpl--------::claimPolicy()");
 		PolicyClaim policyClaim = new PolicyClaim();
@@ -48,11 +52,11 @@ public class PolicyClaimServiceImpl implements PolicyClaimService{
 		policyClaim.setStatus(claimRequestDto.getStatus());
 		policyClaimRepository.save(policyClaim);
 		Integer claimId = policyClaim.getClaimId();
+		Optional<ClaimResponseDto> optionalClaimResponseDto;
 		ClaimResponseDto claimResponseDto = new ClaimResponseDto();
 		claimResponseDto.setClaimId(claimId);
-		claimResponseDto.setMessage(ApplicationConstants.CLAIM_POLICY_SUCESS_MESSAGE);
-		claimResponseDto.setStatusCode(ApplicationConstants.SUCESS_STATUS_CODE);
-		return claimResponseDto;
+		optionalClaimResponseDto = Optional.of(claimResponseDto);
+		return optionalClaimResponseDto;
 	}
 
 }
