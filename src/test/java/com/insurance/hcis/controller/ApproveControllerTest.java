@@ -28,7 +28,8 @@ import com.insurance.hcis.service.ApproverServiceImpl;
 
 /**
  * @author SubhaMaheswaran
- *
+ * @Description This class is used for to do get claim and approve claim test
+ *              operations	
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ApproveControllerTest {

@@ -24,7 +24,7 @@ import com.insurance.hcis.service.LoginServiceImpl;
 
 /**
  * @author SubhaMaheswaran
- *
+ * @Description This class is used to do test operations for login
  */
 @RunWith(MockitoJUnitRunner.class)
 public class LoginControllerTest {

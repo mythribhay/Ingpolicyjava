@@ -22,8 +22,8 @@ import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.repository.ApproverRepository;
 
 /**
- * @author User1
- *
+ * @author SubhaMaheswaran
+ * @Description This class is used for to do test operation for login service
  */
 @RunWith(MockitoJUnitRunner.class)
 public class LoginServiceImplTest {

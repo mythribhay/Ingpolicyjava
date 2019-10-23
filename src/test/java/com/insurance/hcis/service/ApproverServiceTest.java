@@ -28,7 +28,8 @@ import com.insurance.hcis.repository.PolicyRepository;
 
 /**
  * @author SubhaMaheswaran
- *
+ * @Description This class is used for to do test operations for Approver
+ *              service
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ApproverServiceTest {
