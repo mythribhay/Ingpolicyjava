@@ -64,7 +64,6 @@ public class HospitalControllerTest {
 	public void testgetHospitalsNegative() throws InvalidPolicyException {
 
 		log.info("Enter HospitalControllerTest:testgetHospitalsNegative()");
-		Mockito.when(hospitalService.getAllHospitals()).thenReturn(Optional.ofNullable(null));
 		ResponseEntity<HospitalResponseDto> RHospitalResponse = hospitalController.getHospitals();
 		assertNotNull(RHospitalResponse);
 	}

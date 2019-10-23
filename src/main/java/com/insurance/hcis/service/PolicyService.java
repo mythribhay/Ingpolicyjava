@@ -10,7 +10,7 @@ import com.insurance.hcis.exception.InvalidPolicyException;
 public interface PolicyService {
 
 	/**
-	 * Verify andget policy.
+	 * Verify and get policy.
 	 *
 	 * @param policyId the policy id
 	 * @return the policy response

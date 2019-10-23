@@ -60,7 +60,6 @@ public class PolicyClaimControllerTest {
 			claimResponseDto.setClaimId(1);
 			claimResponseDto.setMessage("sucess");
 			claimResponseDto.setStatusCode(200);
-			Mockito.when(policyClaimService.claimPolicy(Mockito.any())).thenReturn(Optional.ofNullable(null));
 
 			ClaimRequestDto claimRequestDto = new ClaimRequestDto();
 			claimRequestDto.setAdmissionDate(LocalDate.now());
