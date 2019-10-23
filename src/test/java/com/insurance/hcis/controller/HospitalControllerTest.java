@@ -24,7 +24,10 @@ import com.insurance.hcis.exception.InvalidPolicyException;
 import com.insurance.hcis.service.HospitalServiceImpl;
 import com.insurance.hcis.service.PolicyServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class HospitalControllerTest {
 
 	@Mock
@@ -39,7 +42,7 @@ public class HospitalControllerTest {
 
 	@Before
 	public void setup() {
-
+		log.info("Enter HospitalControllerTest:setup()");
 		hospital1.setHospitalId(1);
 		hospital1.setHospitalName("Appolo");
 		hospital1.setHospitalId(2);
@@ -49,14 +52,22 @@ public class HospitalControllerTest {
 	}
 
 	@Test
-	public void testVerifyAndGetPolicy() throws InvalidPolicyException {
+	public void testgetHospitals() throws InvalidPolicyException {
 
-		PolicyResponse policyResponse = new PolicyResponse();
-		policyResponse.setPolicyId(1);
-		policyResponse.setStatusCode(HttpStatus.OK.value());
+		log.info("Enter HospitalControllerTest:testgetHospitals()");
 		Mockito.when(hospitalService.getAllHospitals()).thenReturn(Optional.of(hospitals));
 		ResponseEntity<HospitalResponseDto> RHospitalResponse = hospitalController.getHospitals();
 		assertNotNull(RHospitalResponse);
 	}
+	
+	@Test
+	public void testgetHospitalsNegative() throws InvalidPolicyException {
+
+		log.info("Enter HospitalControllerTest:testgetHospitalsNegative()");
+		Mockito.when(hospitalService.getAllHospitals()).thenReturn(Optional.ofNullable(null));
+		ResponseEntity<HospitalResponseDto> RHospitalResponse = hospitalController.getHospitals();
+		assertNotNull(RHospitalResponse);
+	}
+
 
 }

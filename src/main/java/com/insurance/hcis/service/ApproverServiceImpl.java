@@ -52,15 +52,18 @@ public class ApproverServiceImpl implements ApproverService {
 		if (!(listPolicyClaim.isPresent())) {
 			throw new CommonException(ApplicationConstants.NO_CLAIMS_FOUND);
 		}
+
 		List<PolicyClaim> policyClaim = listPolicyClaim.get();
+
 		Optional<List<ResponsePolicyClaim>> listResponsePolicyClaimDto;
 		List<ResponsePolicyClaim> listOfResponsePolicyClaim = new ArrayList<>();
 
-		policyClaim.stream().forEach(responsePolicyClaimDb -> {
+		policyClaim.forEach(responsePolicyClaimDb -> {
 
 			Policy responsePolicy = policyRepository.findByDiagnosisAndAilmentAndPolicyId(
 					responsePolicyClaimDb.getDiagnosis(), responsePolicyClaimDb.getAilment(),
 					responsePolicyClaimDb.getPolicyId());
+
 			ResponsePolicyClaim responsePolicyClaim = new ResponsePolicyClaim();
 			BeanUtils.copyProperties(responsePolicyClaimDb, responsePolicyClaim);
 			responsePolicyClaim.setClaimAmount(responsePolicy.getClaimAmount());
@@ -106,6 +109,7 @@ public class ApproverServiceImpl implements ApproverService {
 
 				&& requestClaimApproveDto.getLevelTwoStatus().equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_COMPLETE)) {
 			responsePolicy.setStatus(ApprovalStatus.LEVEL_ONE_APPROVED);
+			responsePolicy.setApprover1Comment(requestClaimApproveDto.getComments());
 			responseClaimApproveDto.setApprovedLevelStatus(ApprovalStatus.APPROVED);
 			policyClaimRepository.save(responsePolicy);
 		}
@@ -114,6 +118,7 @@ public class ApproverServiceImpl implements ApproverService {
 				&& requestClaimApproveDto.getLevelTwoStatus().equalsIgnoreCase(ApprovalStatus.LEVEL_ONE_NOTCOMPLETE)) {
 			responsePolicy.setStatus(ApprovalStatus.LEVEL_TWO_PENDING);
 			responsePolicy.setApproverId(2);
+			responsePolicy.setApprover1Comment(requestClaimApproveDto.getComments());
 			responseClaimApproveDto.setApprovedLevelStatus(ApprovalStatus.APPROVED);
 			policyClaimRepository.save(responsePolicy);
 		}

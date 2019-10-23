@@ -17,7 +17,10 @@ import com.insurance.hcis.dto.PolicyResponse;
 import com.insurance.hcis.exception.InvalidPolicyException;
 import com.insurance.hcis.service.PolicyServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class PolicyControllerTest {
 
 	@Mock
@@ -28,7 +31,7 @@ public class PolicyControllerTest {
 
 	@Test
 	public void testVerifyAndGetPolicy() throws InvalidPolicyException {
-
+		log.info("Enter PolicyControllerTest:testVerifyAndGetPolicy()");
 		PolicyResponse policyResponse = new PolicyResponse();
 		policyResponse.setPolicyId(1);
 		policyResponse.setStatusCode(HttpStatus.OK.value());

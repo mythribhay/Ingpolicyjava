@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
 import com.insurance.hcis.dto.PolicyResponse;
 import com.insurance.hcis.entity.Policy;
 import com.insurance.hcis.exception.InvalidPolicyException;
@@ -47,7 +49,7 @@ public class PolicyServiceImplTest {
 		Policy policy = new Policy();
 		policy.setEndDate(LocalDate.now().plusDays(1L));
 		policy.setPolicyId(1);
-		Mockito.when(policyRepository.findById(1)).thenReturn(Optional.ofNullable(null));
+//		Mockito.when(policyRepository.findById(1)).thenReturn(Optional.ofNullable(null));
 		PolicyResponse policyResponse = policyService.verifyAndgetPolicy(2);
 		assertNotNull(policyResponse);
 		

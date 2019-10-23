@@ -7,6 +7,7 @@ import com.insurance.hcis.dto.HospitalResponse;
 
 /**
  * The Interface HospitalService.
+ * @author sharath vemperala
  */
 public interface HospitalService {
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insurance.hics.service;
+package com.insurance.hcis.service;
 
 import java.util.ArrayList;
 import java.util.List;

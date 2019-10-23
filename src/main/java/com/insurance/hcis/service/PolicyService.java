@@ -4,7 +4,8 @@ import com.insurance.hcis.dto.PolicyResponse;
 import com.insurance.hcis.exception.InvalidPolicyException;
 
 /**
- * The Interface PolicyService.
+ * The Interface PolicyService which verifies the policy is valid and expired or not.
+ * @author sharath vemperala
  */
 public interface PolicyService {
 

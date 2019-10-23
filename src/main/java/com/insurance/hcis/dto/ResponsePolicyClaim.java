@@ -31,4 +31,7 @@ public class ResponsePolicyClaim {
 	private String comments;
 	private String hospitalName;
 	private Double requestedClaimAmount;
+	private String approver1Comment;
+	private String approver2Comment;
+	
 }

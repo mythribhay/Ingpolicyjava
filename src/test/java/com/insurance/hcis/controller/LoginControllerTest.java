@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insurance.hics.controller;
+package com.insurance.hcis.controller;
 
 import java.util.Optional;
 
