@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insurance.hics.controller;
+package com.insurance.hcis.controller;
 
 import java.util.Optional;
 
@@ -17,9 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.insurance.hcis.controller.LoginController;
 import com.insurance.hcis.dto.RequestApproverDto;
 import com.insurance.hcis.dto.ResponseApproverDto;
+import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.service.LoginServiceImpl;
 
 /**
@@ -54,6 +54,14 @@ public class LoginControllerTest {
 	@Test
 	public void testLogin() throws Exception {
 		Mockito.when(loginServiceImpl.login(Mockito.any())).thenReturn(Optional.of(responseApproverDto));
+		ResponseEntity<Optional<ResponseApproverDto>> responseClaimApproveDto = loginController
+				.login(requestApproverDto);
+		Assert.assertNotNull(responseClaimApproveDto);
+	}
+
+	@Test(expected = CommonException.class)
+	public void testLoginNegative() throws Exception {
+		Mockito.when(loginServiceImpl.login(Mockito.any())).thenReturn(Optional.ofNullable(null));
 		ResponseEntity<Optional<ResponseApproverDto>> responseClaimApproveDto = loginController
 				.login(requestApproverDto);
 		Assert.assertNotNull(responseClaimApproveDto);

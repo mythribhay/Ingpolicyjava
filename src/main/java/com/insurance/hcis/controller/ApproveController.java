@@ -31,7 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author SubhaMaheswaran
- * @Description This class is used to do the get claim and Approve operation
+ * @Description This class is used for to do the get claim and Approve
+ *              operations
  */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -53,7 +54,10 @@ public class ApproveController {
 			@RequestParam String status) throws CommonException {
 		log.info(":: Enter into ApproveController--------::getClaims()");
 		Optional<List<ResponsePolicyClaim>> listResponsePolicyClaim = approverService.getClaims(approverId, status);
-
+		/**
+		 * @Description Checking the response data is present or not
+		 * @exception NO_CLAIMS_FOUND
+		 */
 		if (!(listResponsePolicyClaim.isPresent())) {
 			throw new CommonException(ApplicationConstants.NO_CLAIMS_FOUND);
 
@@ -67,10 +71,20 @@ public class ApproveController {
 		return new ResponseEntity<>(responsePolicyClaimDto, HttpStatus.OK);
 	}
 
+	/**
+	 * @Description This method is used approve the claim
+	 * @param requestClaimApproveDto
+	 * @return ResponseClaimApproveDto
+	 * @exception CLAIM_APPROVED_FAILED
+	 */
 	@PostMapping("/claim/approve")
 	public ResponseEntity<ResponseClaimApproveDto> approveClaim(
 			@RequestBody RequestClaimApproveDto requestClaimApproveDto) throws CommonException {
 		ResponseClaimApproveDto responseClaimApproveDto = approverService.approveClaim(requestClaimApproveDto);
+		/**
+		 * @Description Checking the response data is empty
+		 * @exception CLAIM_APPROVED_FAILED
+		 */
 		if (responseClaimApproveDto.getApprovedLevelStatus().isEmpty()) {
 			throw new CommonException(ApplicationConstants.CLAIM_APPROVED_FAILED);
 		}

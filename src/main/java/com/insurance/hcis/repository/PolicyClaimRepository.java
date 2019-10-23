@@ -34,8 +34,8 @@ public interface PolicyClaimRepository extends JpaRepository<PolicyClaim, Intege
 	 * @param approverId
 	 * @param claimId
 	 * @param approverId2
-	 * @return PolicyClaim
+	 * @return Optional<PolicyClaim>
 	 */
-	PolicyClaim findByApproverIdAndClaimId(Integer approverId, Integer claimId);
+	Optional<PolicyClaim> findByApproverIdAndClaimId(Integer approverId, Integer claimId);
 
 }
