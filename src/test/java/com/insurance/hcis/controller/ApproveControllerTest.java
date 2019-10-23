@@ -26,12 +26,16 @@ import com.insurance.hcis.dto.ResponsePolicyClaimDto;
 import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.service.ApproverServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author SubhaMaheswaran
  * @Description This class is used for to do get claim and approve claim test
- *              operations	
+ *              operations
  */
+
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class ApproveControllerTest {
 
 	@Mock
@@ -48,6 +52,7 @@ public class ApproveControllerTest {
 	List<ResponsePolicyClaim> list;
 	ResponsePolicyClaim responsePolicyClaim;
 	ResponseClaimApproveDto responseClaimApproveDto;
+
 	ResponseClaimApproveDto responseClaimApproveDto1;
 
 	@Before
@@ -73,12 +78,15 @@ public class ApproveControllerTest {
 		responseClaimApproveDto.setStatusCode(200);
 
 		responseClaimApproveDto1 = new ResponseClaimApproveDto();
+		responseClaimApproveDto1.setMessage("success");
+		responseClaimApproveDto1.setStatusCode(200);
 		requestClaimApproveDto1 = new RequestClaimApproveDto();
 
 	}
 
 	@Test
 	public void testGetClaims() throws Exception {
+		log.info(":: Enter into ApproveControllerTest--------::testGetClaims()");
 		Mockito.when(approverServiceImpl.getClaims(1, "pending L1")).thenReturn(Optional.of(list));
 		ResponseEntity<ResponsePolicyClaimDto> responseClaimApproveDto = approveController.getClaims(1, "pending L1");
 		Assert.assertNotNull(responseClaimApproveDto);
@@ -86,6 +94,7 @@ public class ApproveControllerTest {
 
 	@Test(expected = CommonException.class)
 	public void testGetClaimsNegative() throws Exception {
+		log.info(":: Enter into ApproveControllerTest--------::testGetClaimsNegative()");
 		Mockito.when(approverServiceImpl.getClaims(1, "pending L1")).thenReturn(Optional.ofNullable(null));
 		ResponseEntity<ResponsePolicyClaimDto> responseClaimApproveDto = approveController.getClaims(1, "pending L1");
 		Assert.assertNotNull(responseClaimApproveDto);
@@ -93,16 +102,10 @@ public class ApproveControllerTest {
 
 	@Test
 	public void testApproveClaim() throws CommonException {
+		log.info(":: Enter into ApproveControllerTest--------::testApproveClaim()");
 		Mockito.when(approverServiceImpl.approveClaim(Mockito.any())).thenReturn(responseClaimApproveDto);
 		ResponseEntity<ResponseClaimApproveDto> response = approveController.approveClaim(requestClaimApproveDto);
 		Assert.assertNotNull(response);
 	}
-
-//	@Test(expected = CommonException.class)
-//	public void testApproveClaimNegative() throws CommonException {
-//		Mockito.when(approverServiceImpl.approveClaim(Mockito.any())).thenReturn(null);
-//		ResponseEntity<ResponseClaimApproveDto> response = approveController.approveClaim(requestClaimApproveDto1);
-//		Assert.assertNotNull(response);
-//	}
 
 }

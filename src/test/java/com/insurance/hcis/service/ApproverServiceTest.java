@@ -85,7 +85,10 @@ public class ApproverServiceTest {
 		requestClaimApproveDto.setApproverId(1);
 		requestClaimApproveDto.setLevelOneStatus("Approved");
 		requestClaimApproveDto.setLevelTwoStatus("complete");
-
+		requestClaimApproveDto1 = new RequestClaimApproveDto();
+		requestClaimApproveDto1.setApproverId(3);
+		requestClaimApproveDto1.setClaimId(4);
+		
 		requestClaimApproveDto1 = new RequestClaimApproveDto();
 		requestClaimApproveDto1.setApproverId(3);
 		requestClaimApproveDto1.setClaimId(4);
