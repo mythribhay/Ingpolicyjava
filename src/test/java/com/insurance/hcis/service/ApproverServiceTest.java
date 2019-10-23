@@ -26,12 +26,15 @@ import com.insurance.hcis.repository.ApproverRepository;
 import com.insurance.hcis.repository.PolicyClaimRepository;
 import com.insurance.hcis.repository.PolicyRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author SubhaMaheswaran
  * @Description This class is used for to do test operations for Approver
  *              service
  */
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class ApproverServiceTest {
 
 	@Mock
@@ -88,7 +91,7 @@ public class ApproverServiceTest {
 		requestClaimApproveDto1 = new RequestClaimApproveDto();
 		requestClaimApproveDto1.setApproverId(3);
 		requestClaimApproveDto1.setClaimId(4);
-		
+
 		requestClaimApproveDto1 = new RequestClaimApproveDto();
 		requestClaimApproveDto1.setApproverId(3);
 		requestClaimApproveDto1.setClaimId(4);
@@ -130,6 +133,7 @@ public class ApproverServiceTest {
 
 	@Test
 	public void testGetClaims() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testGetClaims()");
 		Mockito.when(policyClaimRepository.findByApproverIdAndStatus(Mockito.anyInt(), Mockito.anyString()))
 				.thenReturn(listPolicyClaim);
 
@@ -141,6 +145,7 @@ public class ApproverServiceTest {
 
 	@Test(expected = CommonException.class)
 	public void testGetClaimsNegative() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testGetClaimsNegative()");
 		Mockito.when(policyClaimRepository.findByApproverIdAndStatus(Mockito.anyInt(), Mockito.anyString()))
 				.thenReturn(Optional.ofNullable(null));
 		Optional<List<ResponsePolicyClaim>> responseClaim = approverServiceImpl.getClaims(1, "PendingL1");
@@ -149,37 +154,42 @@ public class ApproverServiceTest {
 
 	@Test(expected = CommonException.class)
 	public void testApproveClaimForNUll() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForNUll()");
 		response = approverServiceImpl.approveClaim(null);
 		Assert.assertNull(response);
 	}
 
 	@Test(expected = CommonException.class)
-	public void testtestApproveClaimForApproverId() throws CommonException {
+	public void testApproveClaimForApproverId() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForApproverId()");
 		response = approverServiceImpl.approveClaim(requestClaimApproveDto1);
 		Assert.assertNull(response);
 	}
 
 	@Test(expected = CommonException.class)
 	public void testApproveClaimForLevelOneStatus() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForLevelOneStatus()");
 		response = approverServiceImpl.approveClaim(requestClaimApproveDto2);
 		Assert.assertNull(response);
 	}
 
 	@Test(expected = CommonException.class)
 	public void testApproveClaimForLevelTwoStatus() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForLevelTwoStatus()");
 		response = approverServiceImpl.approveClaim(requestClaimApproveDto3);
 		Assert.assertNotNull(response);
 	}
 
 	@Test(expected = CommonException.class)
-	public void testtestApproveClaimForPolicy() throws CommonException {
-
+	public void testApproveClaimForPolicy() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForPolicy()");
 		response = approverServiceImpl.approveClaim(requestClaimApproveDto);
 		Assert.assertNull(response);
 	}
 
 	@Test
-	public void testtestApproveClaimForLevelOne() throws CommonException {
+	public void testApproveClaimForLevelOne() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForLevelOne()");
 		Mockito.when(policyClaimRepository.findByApproverIdAndClaimId(Mockito.anyInt(), Mockito.anyInt()))
 				.thenReturn(Optional.of(policyClaim));
 		Mockito.when(policyClaimRepository.save(Mockito.any())).thenReturn(null);
@@ -188,7 +198,8 @@ public class ApproverServiceTest {
 	}
 
 	@Test
-	public void testtestApproveClaimForLevelOneToLevelTwo() throws CommonException {
+	public void testApproveClaimForLevelOneToLevelTwo() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForLevelOneToLevelTwo()");
 		Mockito.when(policyClaimRepository.findByApproverIdAndClaimId(Mockito.anyInt(), Mockito.anyInt()))
 				.thenReturn(Optional.of(policyClaim));
 		Mockito.when(policyClaimRepository.save(Mockito.any())).thenReturn(null);
@@ -197,7 +208,8 @@ public class ApproverServiceTest {
 	}
 
 	@Test
-	public void testtestApproveClaimForLevelTwo() throws CommonException {
+	public void testApproveClaimForLevelTwo() throws CommonException {
+		log.info(":: Enter into ApproverServiceTEst----------::testApproveClaimForLevelTwo()");
 		Mockito.when(policyClaimRepository.findByApproverIdAndClaimId(Mockito.anyInt(), Mockito.anyInt()))
 				.thenReturn(Optional.of(policyClaim));
 		Mockito.when(policyClaimRepository.save(Mockito.any())).thenReturn(null);

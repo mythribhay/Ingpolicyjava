@@ -21,11 +21,14 @@ import com.insurance.hcis.entity.Approver;
 import com.insurance.hcis.exception.CommonException;
 import com.insurance.hcis.repository.ApproverRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author SubhaMaheswaran
  * @Description This class is used for to do test operation for login service
  */
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class LoginServiceImplTest {
 
 	@Mock
@@ -44,6 +47,7 @@ public class LoginServiceImplTest {
 
 	@Test
 	public void testLogin() throws CommonException {
+		log.info(":: Enter into LoginServiceTEst----------::testLogin()");
 		ResponseApproverDto responseApproverDto = new ResponseApproverDto();
 		responseApproverDto.setRole("Approver1");
 		responseApproverDto.setAppoverId(1);
@@ -68,6 +72,7 @@ public class LoginServiceImplTest {
 
 	@Test(expected = CommonException.class)
 	public void testLoginNegative() throws CommonException {
+		log.info(":: Enter into LoginServiceTEst----------::testLogin()");
 		ResponseApproverDto responseApproverDto = new ResponseApproverDto();
 		responseApproverDto.setRole("Approver1");
 		responseApproverDto.setAppoverId(1);

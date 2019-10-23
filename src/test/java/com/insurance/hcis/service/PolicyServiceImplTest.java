@@ -18,17 +18,16 @@ import com.insurance.hcis.repository.PolicyRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PolicyServiceImplTest {
-	
+
 	@Mock
 	PolicyRepository policyRepository;
-	
+
 	@InjectMocks
 	PolicyServiceImpl policyService;
-	
-	
+
 	@Before
 	public void setup() {
-		
+
 	}
 
 	@Test
@@ -39,20 +38,20 @@ public class PolicyServiceImplTest {
 		Mockito.when(policyRepository.findById(1)).thenReturn(Optional.of(policy));
 		PolicyResponse policyResponse = policyService.verifyAndgetPolicy(1);
 		assertNotNull(policyResponse);
-		
+
 	}
-	
+
 	@Test(expected = InvalidPolicyException.class)
 	public void testVerifyAndGetPolicyNegativeInvalidPolicyId() throws InvalidPolicyException {
 		Policy policy = new Policy();
 		policy.setEndDate(LocalDate.now().plusDays(1L));
 		policy.setPolicyId(1);
-		//Mockito.when(policyRepository.findById(1)).thenReturn(Optional.ofNullable(null));
+		Mockito.when(policyRepository.findById(1)).thenReturn(Optional.ofNullable(null));
 		PolicyResponse policyResponse = policyService.verifyAndgetPolicy(2);
 		assertNotNull(policyResponse);
-		
+
 	}
-	
+
 	@Test(expected = InvalidPolicyException.class)
 	public void testVerifyAndGetPolicyNegativeExpireDate() throws InvalidPolicyException {
 		Policy policy = new Policy();
@@ -61,8 +60,7 @@ public class PolicyServiceImplTest {
 		Mockito.when(policyRepository.findById(1)).thenReturn(Optional.of(policy));
 		PolicyResponse policyResponse = policyService.verifyAndgetPolicy(1);
 		assertNotNull(policyResponse);
-		
-	}
 
+	}
 
 }

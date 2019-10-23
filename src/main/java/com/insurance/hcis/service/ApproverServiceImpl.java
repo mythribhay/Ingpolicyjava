@@ -77,11 +77,7 @@ public class ApproverServiceImpl implements ApproverService {
 	}
 
 	/**
-	 * <<<<<<< HEAD
-	 * 
-	 * @Description This method is used for get claims =======
-	 * @Description This method is used for approve claim >>>>>>>
-	 *              e799c3a4c526962160d781be7d6ba1534e2ce37d
+	 * @Description This method is used for approve claim
 	 * @param requestClaimApproveDto
 	 * @return ResponseClaimApproveDto
 	 * @exception NO_CLAIMS_FOUND,INVALID_APPROVAL_DETAILS,INVALID_APPROVER_ID

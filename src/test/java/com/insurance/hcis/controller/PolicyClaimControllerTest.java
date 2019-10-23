@@ -52,5 +52,32 @@ public class PolicyClaimControllerTest {
 			ResponseEntity<Optional<ClaimResponseDto>> actual = policyClaimController.policyClaim(claimRequestDto);
 			assertNotNull(actual);
 		}
+	
+	@Test(expected = CommonException.class)
+	public void testPolicyClaimNegative() throws CommonException {
+
+			ClaimResponseDto claimResponseDto = new ClaimResponseDto();
+			claimResponseDto.setClaimId(1);
+			claimResponseDto.setMessage("sucess");
+			claimResponseDto.setStatusCode(200);
+			Mockito.when(policyClaimService.claimPolicy(Mockito.any())).thenReturn(Optional.ofNullable(null));
+
+			ClaimRequestDto claimRequestDto = new ClaimRequestDto();
+			claimRequestDto.setAdmissionDate(LocalDate.now());
+			claimRequestDto.setAilment("hnhs");
+			claimRequestDto.setApprover1Comment("Adada");
+			claimRequestDto.setApprover2Comment("ibiut");
+			claimRequestDto.setClaimDate(LocalDate.now());
+			claimRequestDto.setDiagnosis("kjgg");
+			claimRequestDto.setHospitalName("apolo");
+			claimRequestDto.setPolicyId(1);
+			claimRequestDto.setRequestedClaimAmount(8756.0);
+			claimRequestDto.setStatus("ygduyf");
+			claimRequestDto.setDischargeDate(LocalDate.now());
+			
+			ResponseEntity<Optional<ClaimResponseDto>> actual = policyClaimController.policyClaim(claimRequestDto);
+			assertNotNull(actual);
+		}
+
 
 }

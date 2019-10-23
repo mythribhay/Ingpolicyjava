@@ -22,14 +22,14 @@ public class PolicyClaimServiceImplTest {
 	PolicyClaimRepository policyClaimRepository;
 	@InjectMocks
 	PolicyClaimServiceImpl policyClaimServiceImpl;
-	
+
 	@Test
 	public void testClaimPolicy() {
 		ClaimResponseDto claimResponseDto = new ClaimResponseDto();
 		claimResponseDto.setClaimId(1);
 		claimResponseDto.setMessage("sucess");
 		claimResponseDto.setStatusCode(200);
-		
+
 		ClaimRequestDto claimRequestDto = new ClaimRequestDto();
 		claimRequestDto.setAdmissionDate(LocalDate.now());
 		claimRequestDto.setAilment("cavities");
@@ -42,7 +42,7 @@ public class PolicyClaimServiceImplTest {
 		claimRequestDto.setRequestedClaimAmount(8756.0);
 		claimRequestDto.setStatus("pending");
 		claimRequestDto.setDischargeDate(LocalDate.now());
-		
+
 		Optional<ClaimResponseDto> actual = policyClaimServiceImpl.claimPolicy(claimRequestDto);
 		assertNotNull(actual);
 	}

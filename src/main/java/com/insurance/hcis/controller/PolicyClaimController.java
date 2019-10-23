@@ -34,9 +34,13 @@ public class PolicyClaimController {
 	PolicyClaimService policyClaimService;
 
 	/*
-	 * @Description -This method is used to save the claim of policy taken by user while health insurance.
+	 * @Description -This method is used to save the claim of policy taken by user
+	 * while health insurance.
+	 * 
 	 * @Param- claimRequestDto
+	 * 
 	 * @Response- ResponseEntity of Optional<ClaimResponseDto>
+	 * 
 	 * @Exception- CommonException
 	 */
 	@PostMapping("/claim")
